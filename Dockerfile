@@ -9,3 +9,5 @@ ADD config/configure_postfix.sh /etc/postfix/configure_postfix.sh
 RUN chmod +x /etc/postfix/configure_postfix.sh
 
 VOLUME /config/ldap
+
+EXPOSE 25
