@@ -10,4 +10,4 @@
 You just need to setup $MYHOSTNAME and $MYDOMAINS and the configuration script will configure postfix to use it as virtual domain
 
 ## LDAP
-Just drop you ldap configuration at /config/ldap and the configuration script will configure postfix to use it automatically
+Just drop you ldap configuration at /config/ldap and the configuration script will configure postfix to use it automatically. For more information about LDAP and postfix, see [here](http://www.postfix.org/LDAP_README.html)
