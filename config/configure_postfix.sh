@@ -25,6 +25,11 @@ if [ "$MYHOSTNAME" ]; then
   postconf -e "smtp_banner=$MYHOSTNAME ESMTP"
 fi
 
+if [ "$LMTP_HOST" ]; then 
+  echo "Setting up virtual_transport with $LMTP_HOST"
+  postconf -e "virtual_transport=lmtp:$LMTP_HOST"
+fi
+
 if [-a "$VIRTUAL_DOMAINS" ]; then
   echo "Generating virtual_domains"
   postmap hash:$VIRTUAL_DOMAINS
