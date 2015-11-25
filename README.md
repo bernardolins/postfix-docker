@@ -45,4 +45,4 @@ Spammers often send messages in the name of another user, turning your server in
 This image supports this kind of authentication. You just need to define **$SASL_HOST** (IP:PORT) and **SASL_TYPE** (cyrus or dovecot). *Ex: SASL_HOST=192.168.0.19:12345*
 
 #### MYNETWORKS 
-Ips defined on this variable can send emails without authentication. Setup multiple ips separated by comma. *Ex: MYNETWORKS=192.168.0.19,192.168.0.20
+Ips defined on this variable can send emails without authentication. Setup multiple ips separated by comma. *Ex: MYNETWORKS=192.168.0.19,192.168.0.20*
