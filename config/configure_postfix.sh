@@ -19,9 +19,9 @@ if [ "$MYDOMAIN" ]; then
 fi
 
 if [ "$MYHOSTNAME" ]; then 
-  echo "Setting up mydomain with $MYHOSTNAME"
+  echo "Setting up myhostname with $MYHOSTNAME"
   echo "${MYHOSTNAME}             OK" > $VIRTUAL_DOMAINS
-  postconf -e "mydomain=$MYHOSTNAME"
+  postconf -e "myhostname=$MYHOSTNAME"
   postconf -e "smtp_banner=$MYHOSTNAME ESMTP"
 fi
 
