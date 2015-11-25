@@ -1,19 +1,18 @@
 # Postfix
 
+### Getting Started
+To run without any configuration:
+```
+docker run -d -p 25:25 bernardolins/postfix
+```
+
+*Extra configuration is provided through environment variables.*
+
 ### Basic Environment Variables
 1. **$MYHOSTNAME:** The name of the host. *Ex: mail.example.com*
 2. **$MYDOMAIN**: The domain you want to send/receive emails. *Ex: example.com*
 3. **$MYNETWORKS**: Defaults to docker host 172.17.0.1. Add any other ip here to authorize servers to send email without authentication
 4. **$LMTP_HOST:** Sets the virtual transport host. Must be IP:port. *Ex: 10.0.0.10:24*
-
-### SMTP Authentication 
-Spammers often send messages in the name of another user, turning your server into an open relay. To avoid that, you should configure SMTP authentication. 
-
-#### SASL
-This image supports this kind of authentication. You just need to define **$SASL_HOST**i (IP:PORT) and **SASL_TYPE** (cyrus or dovecot).
-
-#### $MYNETWORKS 
-Ips defined on this variable can send emails without authentication. Setup multiple ips separated by comma. *Ex: MYNETWORKS=10.1.0.10,10.1.0.11,10.1.0.13*
 
 ### Local Domains
 When your users are stored on your own system (a normal unix user, listed on /etc/passwd), they will be able to receive mails from the local domains of you server. So, if you server's local domain is domain.com and you have an user bob, he will receive messages as bob@domain.com, and these messages are stored on /var/mail/bob (or somewhere else you choose). Local domains are configurable using postfix's  **mydestination** entry. Since it makes no sense to create local users inside a docker container, that option is not configurable on this image.
@@ -37,4 +36,13 @@ FROM bernardolins/postfix
 ADD ldap.conf /config/ldap/
 ```
 
-For more information about LDAP and postfix, take a look at [postfix's documentation about LDAP].(http://www.postfix.org/LDAP_README.html)
+For more information about LDAP and postfix, take a look at [postfix's documentation about LDAP](http://www.postfix.org/LDAP_README.html).
+
+### SMTP Authentication 
+Spammers often send messages in the name of another user, turning your server into an open relay. To avoid that, you should configure SMTP authentication. 
+
+#### SASL
+This image supports this kind of authentication. You just need to define **$SASL_HOST** (IP:PORT) and **SASL_TYPE** (cyrus or dovecot). *Ex: SASL_HOST=192.168.0.19:12345*
+
+#### MYNETWORKS 
+Ips defined on this variable can send emails without authentication. Setup multiple ips separated by comma. *Ex: MYNETWORKS=192.168.0.19,192.168.0.20
