@@ -1,5 +1,3 @@
-# Postfix
-
 ### Getting Started
 To run without any configuration:
 ```
@@ -46,3 +44,8 @@ This image supports this kind of authentication. You just need to define **$SASL
 
 #### MYNETWORKS 
 Ips defined on this variable can send emails without authentication. Setup multiple ips separated by comma. *Ex: MYNETWORKS=192.168.0.19,192.168.0.20*
+
+### Virtual Transport
+This image uses LMTP to exchange emails between postfix and the MDA (like dovecot). You should tell the MDA to listen LMTP connections on a port ([see dovecot guide](http://wiki2.dovecot.org/LMTP)). This image's postfix you connect on i**$LMTP_HOST** (IP:PORT) and use this connection to deliver messages to MDA.
+
+**Important**: If one of theses variables are not set, postfix will not deliver messages to MDA!
