@@ -30,7 +30,14 @@ if [ "$LMTP_HOST" ]; then
   postconf -e "virtual_transport=lmtp:$LMTP_HOST"
 fi
 
-if [-a "$VIRTUAL_DOMAINS" ]; then
+if [ "$SASL_HOST" ] && [ "$SASL_TYPE" ]; then
+  echo "Setting up virtual_transport with $LMTP_HOST"
+  postconf -e "smtpd_sasl_auth_enable = yes"
+  postconf -e "smtpd_sasl_path = inet:$SASL_HOST:12345"
+  postconf -e "smtpd_sasl_type = $SASL_TYPE"
+fi
+
+if [ -a "$VIRTUAL_DOMAINS" ]; then
   echo "Generating virtual_domains"
   postmap hash:$VIRTUAL_DOMAINS
 fi

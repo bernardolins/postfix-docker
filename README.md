@@ -1,6 +1,6 @@
 # Postfix
 
-## Environment Variables
+## Basic Environment Variables
 1. **$MYHOSTNAME:** The name of the host. *Ex: mail.example.com*
 2. **$MYDOMAIN**: The domain you want to send/receive emails. *Ex: example.com*
 3. **$MYNETWORKS**: Defaults to docker host 172.17.0.1. Add any other ip here to authorize servers to send email without authentication
@@ -10,4 +10,7 @@
 You just need to setup $MYHOSTNAME and $MYDOMAINS and the configuration script will configure postfix to use it as virtual domain
 
 ## LDAP
-Just drop you ldap configuration at /config/ldap and the configuration script will configure postfix to use it automatically. For more information about LDAP and postfix, see [here](http://www.postfix.org/LDAP_README.html)
+Just drop you ldap configuration at /config/ldap and the configuration script will configure postfix to use it automatically to search for virtual mailboxes. For more information about LDAP and postfix, see [at postfix's documentation].(http://www.postfix.org/LDAP_README.html)
+
+## SASL
+Setup $SASL_HOST (IP:port) and $SASL_TYPE (cyrus or dovecot) and the container will use it to implement SASL authentication
