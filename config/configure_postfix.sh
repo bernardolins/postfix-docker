@@ -1,8 +1,12 @@
 #!/bin/bash
 
-DOCKER_HOST=172.17.0.1
+DOCKER_HOST=$(hostname -i)
 VIRTUAL_DOMAINS=/etc/postfix/virtual_domains
 LDAP_DIR=/config/ldap
+
+postconf -e "mydestination="
+postconf -e "alias_maps="
+postconf -e "alias_database="
 
 if [ "$MYNETWORKS" ]; then 
   echo "Setting up mynetworks with $DOCKER_HOST, $MYNETWORKS"
