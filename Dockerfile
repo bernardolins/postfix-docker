@@ -9,9 +9,14 @@ RUN echo "mail.* -/var/log/mail.log" >> /etc/rsyslog.conf
 RUN touch /var/log/mail.log && chown syslog:adm /var/log/mail.log
 
 ADD config/configure_postfix.sh /etc/postfix/configure_postfix.sh
+ADD config/start.sh /etc/postfix/start.sh
+
 RUN chmod +x /etc/postfix/configure_postfix.sh
+RUN chmod +x /etc/postfix/start.sh
 
 VOLUME /config/ldap
 VOLUME /config/cert
 
 EXPOSE 25
+
+CMD /etc/postfix/start.sh
